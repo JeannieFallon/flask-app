@@ -2,4 +2,8 @@
 
 TAG=$1
 
-docker run --rm -d -p 8000:5000 --name flask-sample hello-clarice:$TAG
+exec docker run --rm -d \
+    --network mysqlnet \
+    --name flask-app \
+    -p 8000:5000 \
+    hello-clarice:$TAG
